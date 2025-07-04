@@ -23,10 +23,20 @@ public class TeacherRepository {
         return jdbcTemplate.query("SELECT * FROM teacher ORDER BY name", mapper);
     }
 
+    public Teacher findById(int id) {
+        return jdbcTemplate.queryForObject("SELECT * FROM teacher WHERE id = ?", mapper, id);
+    }
+
     //int인 이유 : int 는 업데이트된 행의 갯수가 return됨
     public int save(Teacher teacher) {
         return jdbcTemplate.update(
                 "INSERT INTO teacher (name) VALUES (?)", teacher.getName()
+        );
+    }
+
+    public int update(Teacher teacher) {
+        return jdbcTemplate.update(
+                "UPDATE teacher SET name = ? WHERE id = ?", teacher.getName(), teacher.getId()
         );
     }
 }

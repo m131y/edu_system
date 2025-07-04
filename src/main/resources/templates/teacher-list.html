@@ -23,6 +23,9 @@
     <tr>
         <td th:text="${teacher.id}"></td>
         <td th:text="${teacher.name}"></td>
+        <td>
+            <a th:href="@{'/teachers/edit/' + ${teacher.id}}">수정</a>
+        </td>
     </tr>
     </tbody>
 </table>
