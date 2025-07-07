@@ -27,7 +27,7 @@ public class TeacherRepository {
         return jdbcTemplate.queryForObject("SELECT * FROM teacher WHERE id = ?", mapper, id);
     }
 
-    //int인 이유 : int 는 업데이트된 행의 갯수가 return됨
+    //int인 이유 : 수행된 행의 갯수가 return됨
     public int save(Teacher teacher) {
         return jdbcTemplate.update(
                 "INSERT INTO teacher (name) VALUES (?)", teacher.getName()
@@ -37,6 +37,12 @@ public class TeacherRepository {
     public int update(Teacher teacher) {
         return jdbcTemplate.update(
                 "UPDATE teacher SET name = ? WHERE id = ?", teacher.getName(), teacher.getId()
+        );
+    }
+
+    public int delete(int id) {
+        return jdbcTemplate.update(
+                "DELETE FROM teacher WHERE id = ?", id
         );
     }
 }

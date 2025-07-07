@@ -48,4 +48,28 @@ public class TeacherController {
 
         return "redirect:/teachers";
     }
+
+//    @GetMapping("/delete/{id}")
+//    public String delete(@PathVariable int id) {
+//        teacherRepository.delete(id);
+//
+//        return "redirect:/teachers";
+//    }
+    //GET으로도 기능문제없이 작성되나 GET은 READ, POST는 CREATE, UPDATE, DELETE을 담당하는게 약속.
+    @PostMapping("/delete/{id}")
+    public String deleteform(@PathVariable int id) {
+        try {
+            int affected = teacherRepository.delete(id);
+
+            if ( affected == 0 ) {
+                System.out.println("해당 교사를 찾을 수 없습니다.");
+            }
+        } catch (Exception e) {
+//            model.addAttribute("error", "너 에러 발생:" + e.getMessage());
+            System.out.println(e.getMessage());
+        }
+
+
+        return "redirect:/teachers";
+    }
 }

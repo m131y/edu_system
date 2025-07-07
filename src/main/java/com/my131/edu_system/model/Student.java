@@ -12,5 +12,7 @@ import lombok.NoArgsConstructor;
 public class Student {
     private Integer id;
     private String name;
-    private Integer teacher_id;
+    private Integer score;
+    private Integer teacherId;
+    private String teacherName;
 }
